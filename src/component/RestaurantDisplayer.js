@@ -18,7 +18,7 @@ const RestaurantDisplayer = () => {
       useEffect(() => {
             restaurantList.forEach(item => {
                   getStreetViewImg(item);
-                  getAddress(item)
+                  getAddress(item);
             });
       },[restaurantList]);
       

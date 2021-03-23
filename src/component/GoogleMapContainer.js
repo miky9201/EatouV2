@@ -2,7 +2,8 @@ import React, { useState, useCallback, useContext } from 'react'
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import icon from '../image/eatou-favicon.png';
 import { GOOGLE_MAP_KEY } from '../config';
-import { isRestaurantAverageMoreThanFilterValue } from "../utils/isRestaurantAverageMoreThanFilterValue";
+import { isRestaurantAverageMoreThanFilterValue } from '../utils/isRestaurantAverageMoreThanFilterValue';
+import { getFoursquareClient } from '../utils/getFoursquarePlaces';
 
 import Modal from './Modal';
 
@@ -41,9 +42,10 @@ const GoogleMapContainer = () => {
                   lng: position.coords.longitude
             }
             setCurrentPosition(currentPosition);
+            getFoursquareClient(currentPosition);
       }
 
-      const onLoad = useCallback((map) => {
+      const onLoad = useCallback(map => {
             setMap(map);
             navigator.geolocation.getCurrentPosition(success);
       }, []);
@@ -81,7 +83,7 @@ const GoogleMapContainer = () => {
                   zoom={14}
                   onBoundsChanged={getMapBounds}
                   onClick={addRestaurant}
-                  >
+                  >     
                         {     
                               restaurantList.map(item => isRestaurantAverageMoreThanFilterValue(item, filterValue) ?
                                     <Marker key={item.id} position={item.location} onClick={() => onSelect(item)}/> 
