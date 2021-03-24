@@ -24,4 +24,4 @@ yarn-error.log*
 
 
 # env
-config.js
+src/config.js
