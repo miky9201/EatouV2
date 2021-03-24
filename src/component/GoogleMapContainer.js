@@ -21,7 +21,7 @@ const GoogleMapContainer = () => {
       const [ filterValue ] = useContext(FilterContext);
       const [ modalStateDisplayed, changeModalStateDisplayed ] = useContext(ModalContext);
       const [clickedLatLng, setClickedLatLng] = useContext(ClickedLatLngContext);
-      const [restaurantList ] = useContext(RestaurantListContext); 
+      const [restaurantList, setRestaurantList ] = useContext(RestaurantListContext); 
 
       const [ selected, setSelected ] = useState({});
       const [ currentPosition, setCurrentPosition ] = useState(); // state qui indique la geolocalisation
@@ -36,13 +36,22 @@ const GoogleMapContainer = () => {
             setSelected(item);
       } 
 
-      const success = position => {
+      const success = async position => {
             const currentPosition = {
                   lat: position.coords.latitude,
                   lng: position.coords.longitude
             }
             setCurrentPosition(currentPosition);
-            getFoursquareClient(currentPosition);
+            const foursquareRestaurants = await getFoursquareClient(currentPosition, restaurantList);
+
+            console.log("=====")
+            console.log(restaurantList)
+            console.log("=====")
+            console.log("=====")
+            console.log(foursquareRestaurants)
+            console.log("=====")
+
+            // setRestaurantList(foursquareRestaurants)
       }
 
       const onLoad = useCallback(map => {
