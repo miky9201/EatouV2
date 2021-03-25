@@ -3,7 +3,7 @@ import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/ap
 import icon from '../image/eatou-favicon.png';
 import { GOOGLE_MAP_KEY } from '../config';
 import { isRestaurantAverageMoreThanFilterValue } from '../utils/isRestaurantAverageMoreThanFilterValue';
-import { getFoursquareClient } from '../utils/getFoursquarePlaces';
+import { getFoursquarePlaces } from '../utils/getFoursquarePlaces';
 
 import Modal from './Modal';
 
@@ -15,7 +15,7 @@ import { RestaurantListContext } from '../RestaurantListContext/RestaurantListCo
 
 
 
-const GoogleMapContainer = () => {
+const GoogleMapContainer = ({currentPosition, setCurrentPosition}) => {
       // eslint-disable-next-line
       const [ mapBoundsValue, setMapBoundsValue ]  = useContext(GoogleMapBoundsContext);
       const [ filterValue ] = useContext(FilterContext);
@@ -24,7 +24,7 @@ const GoogleMapContainer = () => {
       const [restaurantList, setRestaurantList ] = useContext(RestaurantListContext); 
 
       const [ selected, setSelected ] = useState({});
-      const [ currentPosition, setCurrentPosition ] = useState(); // state qui indique la geolocalisation
+      // const [ currentPosition, setCurrentPosition ] = useState(); // state qui indique la geolocalisation
       const [map, setMap] = useState(null); // state qui contient les données de la "map"
             
       const containerStyle = {
@@ -32,26 +32,20 @@ const GoogleMapContainer = () => {
             height: '100%'
       };
 
-      const onSelect = async item => {
+      const onSelect = item => {
             setSelected(item);
       } 
 
-      const success = async position => {
+      const success = position => {
             const currentPosition = {
                   lat: position.coords.latitude,
                   lng: position.coords.longitude
             }
-            setCurrentPosition(currentPosition);
-            const foursquareRestaurants = await getFoursquareClient(currentPosition, restaurantList);
+            setCurrentPosition(currentPosition); 
 
-            console.log("=====")
-            console.log(restaurantList)
-            console.log("=====")
-            console.log("=====")
-            console.log(foursquareRestaurants)
-            console.log("=====")
-
-            // setRestaurantList(foursquareRestaurants)
+            // console.log("=====")
+            // console.log(restaurantList)
+            // console.log("=====")
       }
 
       const onLoad = useCallback(map => {

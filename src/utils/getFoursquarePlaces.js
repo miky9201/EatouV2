@@ -1,7 +1,7 @@
 import { FOURSQUARE_CLIENT_ID } from '../config';
 import { FOURSQUARE_CLIENT_SECRET } from '../config';
 
-export const getFoursquareClient = async (currentPosition, restaurantList) => await fetch(`https://api.foursquare.com/v2/venues/explore?client_id=${FOURSQUARE_CLIENT_ID}&client_secret=${FOURSQUARE_CLIENT_SECRET}&v=20180323&radius=1000&ll=${currentPosition.lat},${currentPosition.lng}&query=restaurant`)
+export const getFoursquarePlaces = (currentPosition, restaurantList, setRestaurantList) => fetch(`https://api.foursquare.com/v2/venues/explore?client_id=${FOURSQUARE_CLIENT_ID}&client_secret=${FOURSQUARE_CLIENT_SECRET}&v=20180323&radius=1000&ll=${currentPosition.lat},${currentPosition.lng}&query=restaurant`)
       .then(res => res.json())
       .then(res => res.response.groups[0].items) // tableau des restos
       .then(async res => {
@@ -22,5 +22,5 @@ export const getFoursquareClient = async (currentPosition, restaurantList) => aw
                         ]
                   })
             }
-            return await restaurants
+            setRestaurantList(restaurants)
 }) 

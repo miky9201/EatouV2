@@ -9,11 +9,13 @@ import { RestaurantListContext } from '../RestaurantListContext/RestaurantListCo
 import { getAddress } from '../utils/getAddress';
 import { getStreetViewImg } from '../utils/getStreetViewImg';
 
+import { getFoursquarePlaces } from '../utils/getFoursquarePlaces';
 
-const RestaurantDisplayer = () => {
+
+const RestaurantDisplayer = ({currentPosition}) => {
       const [ filterValue ] = useContext(FilterContext);
       const [ mapBoundsValue ] = useContext(GoogleMapBoundsContext);
-      const [ restaurantList ] = useContext(RestaurantListContext);
+      const [ restaurantList, setRestaurantList ] = useContext(RestaurantListContext);
 
       useEffect(() => {
             restaurantList.forEach(item => {
@@ -21,6 +23,14 @@ const RestaurantDisplayer = () => {
                   getAddress(item);
             });
       },[restaurantList]);
+
+      // Créer une fonction async similaire à addNewRestaurant() avec paramètres (currentPosition) et qui va chercher les lat, lng et name avec getFourSquarePlaces
+      console.log(currentPosition)
+      getFoursquarePlaces(currentPosition, restaurantList, setRestaurantList);
+      // console.log("+++++")
+      // console.log(restaurantList)
+      // console.log("+++++")
+      
       
       return (
             restaurantList.map(restaurant => isRestaurantAverageMoreThanFilterValue(restaurant, filterValue) && areRestaurantsVisibleInMap(restaurant, mapBoundsValue) ? 
