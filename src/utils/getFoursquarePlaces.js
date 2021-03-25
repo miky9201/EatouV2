@@ -10,7 +10,7 @@ export const getFoursquareClient = (currentPosition) => fetch(`https://api.fours
             restaurants.push({
                   id: restaurants.length + 1,
                   restaurantName: res[index].venue.name,
-                  address: {
+                  location: {
                         lat: res[index].venue.location.lat,
                         lng: res[index].venue.location.lng
                   },

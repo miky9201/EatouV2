@@ -53,9 +53,9 @@ const GoogleMapContainer = () => {
       const getMapBounds = () => {
             if (map && map.getBounds()) { 
                   //console.log(map.getBounds()) 
-                   setMapBoundsValue({ 
-                         n: map.getBounds().Sa.i, 
-                         s: map.getBounds().Sa.g, 
+                  setMapBoundsValue({ 
+                         n: map.getBounds().Ra.i, 
+                         s: map.getBounds().Ra.g, 
                          e: map.getBounds().La.i, 
                          o: map.getBounds().La.g 
                   });
