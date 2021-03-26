@@ -78,6 +78,9 @@ const GoogleMapContainer = () => {
 
       const test = () => {
             getFoursquarePlaces(currentPosition, restaurantList, setRestaurantList)
+            console.log("+++++++")
+            console.log(restaurantList)
+            console.log("+++++++")
       }
 
       return (
