@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState }from 'react';
+import React from 'react';
 import Header from './component/Header';
 import Filter from './component/Filter';
 import RestaurantDisplayer from './component/RestaurantDisplayer';
@@ -14,7 +14,6 @@ import { ClickedLatLngProvider } from './ClickedLatLngContext/ClickedLatLngConte
 import { RestaurantListProvider } from './RestaurantListContext/RestaurantListContext';
 
 function App() {
-      const [ currentPosition, setCurrentPosition ] = useState(); // state qui indique la geolocalisation
       return (
             <RestaurantListProvider>
                   <ClickedLatLngProvider>
@@ -31,11 +30,11 @@ function App() {
                                                                               <div className="flex-col-center-center title">
                                                                                     <h2>Restaurants à proximité</h2>
                                                                                     <Filter />
-                                                                                    <RestaurantDisplayer currentPosition={currentPosition}/>
+                                                                                    <RestaurantDisplayer/>
                                                                               </div>
                                                                         </div>
                                                                         <div className="map-container border">
-                                                                              <GoogleMapContainer currentPosition={currentPosition} setCurrentPosition={setCurrentPosition}/>
+                                                                              <GoogleMapContainer />
                                                                         </div>
                                                                   </div>
                                                             </div>

@@ -14,8 +14,7 @@ import { ClickedLatLngContext } from '../ClickedLatLngContext/ClickedLatLngConte
 import { RestaurantListContext } from '../RestaurantListContext/RestaurantListContext';
 
 
-
-const GoogleMapContainer = ({currentPosition, setCurrentPosition}) => {
+const GoogleMapContainer = () => {
       // eslint-disable-next-line
       const [ mapBoundsValue, setMapBoundsValue ]  = useContext(GoogleMapBoundsContext);
       const [ filterValue ] = useContext(FilterContext);
@@ -24,7 +23,7 @@ const GoogleMapContainer = ({currentPosition, setCurrentPosition}) => {
       const [restaurantList, setRestaurantList ] = useContext(RestaurantListContext); 
 
       const [ selected, setSelected ] = useState({});
-      // const [ currentPosition, setCurrentPosition ] = useState(); // state qui indique la geolocalisation
+      const [ currentPosition, setCurrentPosition ] = useState(); // state qui indique la geolocalisation
       const [map, setMap] = useState(null); // state qui contient les données de la "map"
             
       const containerStyle = {
@@ -67,12 +66,18 @@ const GoogleMapContainer = ({currentPosition, setCurrentPosition}) => {
 
       const addRestaurant = (e) => {
             changeModalStateDisplayed(!modalStateDisplayed);
-
             setClickedLatLng({
                   lat: e.latLng.lat(), 
                   lng: e.latLng.lng()
             });
+      }
 
+      console.log("======")
+      console.log(restaurantList)
+      console.log("======")
+
+      const test = () => {
+            getFoursquarePlaces(currentPosition, restaurantList, setRestaurantList)
       }
 
       return (
@@ -86,6 +91,7 @@ const GoogleMapContainer = ({currentPosition, setCurrentPosition}) => {
                   zoom={14}
                   onBoundsChanged={getMapBounds}
                   onClick={addRestaurant}
+                  onRightClick={test}
                   >     
                         {     
                               restaurantList.map(item => isRestaurantAverageMoreThanFilterValue(item, filterValue) ?
