@@ -12,40 +12,43 @@ import { StarsProvider } from './StarsContext/StarsContext';
 import { ModalProvider } from './ModalContext/ModalContext';
 import { ClickedLatLngProvider } from './ClickedLatLngContext/ClickedLatLngContext';
 import { RestaurantListProvider } from './RestaurantListContext/RestaurantListContext';
+import { CurrentPositionProvider } from './CurrentPositionContext/CurrentPositionContext';
 
 function App() {
       return (
-            <RestaurantListProvider>
-                  <ClickedLatLngProvider>
-                        <ModalProvider>
-                              <StarsProvider>
-                                    <CommentProvider>      
-                                          <FilterProvider>
-                                                <GoogleMapBoundsProvider>
-                                                      <div className="app">
-                                                            <div className="flex-col-top-center">
-                                                                  <Header />
-                                                                  <div className="flex-row-center-top full-container">
-                                                                        <div className="display-container">
-                                                                              <div className="flex-col-center-center title">
-                                                                                    <h2>Restaurants à proximité</h2>
-                                                                                    <Filter />
-                                                                                    <RestaurantDisplayer/>
+            <CurrentPositionProvider>
+                  <RestaurantListProvider>
+                        <ClickedLatLngProvider>
+                              <ModalProvider>
+                                    <StarsProvider>
+                                          <CommentProvider>      
+                                                <FilterProvider>
+                                                      <GoogleMapBoundsProvider>
+                                                            <div className="app">
+                                                                  <div className="flex-col-top-center">
+                                                                        <Header />
+                                                                        <div className="flex-row-center-top full-container">
+                                                                              <div className="display-container">
+                                                                                    <div className="flex-col-center-center title">
+                                                                                          <h2>Restaurants à proximité</h2>
+                                                                                          <Filter />
+                                                                                          <RestaurantDisplayer />
+                                                                                    </div>
                                                                               </div>
-                                                                        </div>
-                                                                        <div className="map-container border">
-                                                                              <GoogleMapContainer />
+                                                                              <div className="map-container border">
+                                                                                    <GoogleMapContainer />
+                                                                              </div>
                                                                         </div>
                                                                   </div>
                                                             </div>
-                                                      </div>
-                                                </GoogleMapBoundsProvider>
-                                          </FilterProvider>
-                                    </CommentProvider>
-                              </StarsProvider>
-                        </ModalProvider>
-                  </ClickedLatLngProvider>
-            </RestaurantListProvider>
+                                                      </GoogleMapBoundsProvider>
+                                                </FilterProvider>
+                                          </CommentProvider>
+                                    </StarsProvider>
+                              </ModalProvider>
+                        </ClickedLatLngProvider>
+                  </RestaurantListProvider>
+            </CurrentPositionProvider>
       );
 }
 

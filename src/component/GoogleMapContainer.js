@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useContext } from 'react'
+import React, { useState, useCallback, useContext, useEffect } from 'react'
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import icon from '../image/eatou-favicon.png';
 import { GOOGLE_MAP_KEY } from '../config';
@@ -12,6 +12,7 @@ import { GoogleMapBoundsContext } from '../GoogleMapBoundsContext/GoogleMapBound
 import { ModalContext } from '../ModalContext/ModalContext';
 import { ClickedLatLngContext } from '../ClickedLatLngContext/ClickedLatLngContext';
 import { RestaurantListContext } from '../RestaurantListContext/RestaurantListContext';
+import { CurrentPositionContext } from '../CurrentPositionContext/CurrentPositionContext';
 
 
 const GoogleMapContainer = () => {
@@ -20,10 +21,10 @@ const GoogleMapContainer = () => {
       const [ filterValue ] = useContext(FilterContext);
       const [ modalStateDisplayed, changeModalStateDisplayed ] = useContext(ModalContext);
       const [clickedLatLng, setClickedLatLng] = useContext(ClickedLatLngContext);
-      const [restaurantList, setRestaurantList ] = useContext(RestaurantListContext); 
+      const [restaurantList, setRestaurantList ] = useContext(RestaurantListContext);
+      const [currentPosition, setCurrentPosition] = useContext(CurrentPositionContext);
 
       const [ selected, setSelected ] = useState({});
-      const [ currentPosition, setCurrentPosition ] = useState(); // state qui indique la geolocalisation
       const [map, setMap] = useState(null); // state qui contient les données de la "map"
             
       const containerStyle = {
@@ -35,16 +36,13 @@ const GoogleMapContainer = () => {
             setSelected(item);
       } 
 
-      const success = position => {
+      const success = async position => {
             const currentPosition = {
                   lat: position.coords.latitude,
                   lng: position.coords.longitude
             }
-            setCurrentPosition(currentPosition); 
-
-            // console.log("=====")
-            // console.log(restaurantList)
-            // console.log("=====")
+            setCurrentPosition(currentPosition);
+            getFoursquarePlaces(currentPosition, restaurantList, setRestaurantList)
       }
 
       const onLoad = useCallback(map => {
@@ -72,16 +70,17 @@ const GoogleMapContainer = () => {
             });
       }
 
-      console.log("======")
-      console.log(restaurantList)
-      console.log("======")
+      //const test = () => getFoursquarePlaces(currentPosition, restaurantList, setRestaurantList)
 
-      const test = () => {
-            getFoursquarePlaces(currentPosition, restaurantList, setRestaurantList)
-            console.log("+++++++")
+      useEffect(() => {
+            console.log("++++++")
             console.log(restaurantList)
-            console.log("+++++++")
-      }
+            console.log("++++++")
+      }, [restaurantList])
+
+      console.log("======")
+            console.log(restaurantList)
+            console.log("======")
 
       return (
             <LoadScript
@@ -94,7 +93,7 @@ const GoogleMapContainer = () => {
                   zoom={14}
                   onBoundsChanged={getMapBounds}
                   onClick={addRestaurant}
-                  onRightClick={test}
+                  //onRightClick={test}
                   >     
                         {     
                               restaurantList.map(item => isRestaurantAverageMoreThanFilterValue(item, filterValue) ?

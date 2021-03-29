@@ -2,7 +2,6 @@
     {
        "id":1,
        "restaurantName":"Bronco",
-       "address":"39 Rue des Petites Écuries, 75010 Paris",
        "location":
            {
             "lat":48.8737815,
@@ -22,7 +21,6 @@
     {
       "id":2,
         "restaurantName":"Chez Papa",
-        "address":"1-3 Rue Victor Hugo, 92700 Colombes",
         "location":
             {
              "lat":48.92378462909014,
@@ -42,7 +40,6 @@
     {
       "id":3,
        "restaurantName":"Babalou",
-       "address":"4 Rue Lamarck, 75018 Paris",
        "location":
             {
                 "lat":48.8865035,
@@ -62,7 +59,6 @@
     {
       "id":4,
       "restaurantName":"Le Bidoche",
-      "address":"7 Rue Jean-Pierre Timbaud, 75011 Paris",
       "location":
            {
                "lat":48.86507570478589,
@@ -82,7 +78,6 @@
    {
       "id":5,
       "restaurantName":"Le Caracole",
-      "address":"2 Rue des Anciens Combattants, 92700 Colombes",
       "location":
            {
                "lat":48.92230437710803,
