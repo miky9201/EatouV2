@@ -36,7 +36,7 @@ const GoogleMapContainer = () => {
             setSelected(item);
       } 
 
-      const success = async position => {
+      const success = position => {
             const currentPosition = {
                   lat: position.coords.latitude,
                   lng: position.coords.longitude
