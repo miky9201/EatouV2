@@ -36,13 +36,23 @@ const GoogleMapContainer = () => {
             setSelected(item);
       } 
 
-      const success = position => {
+      const success = async position => {
             const currentPosition = {
                   lat: position.coords.latitude,
                   lng: position.coords.longitude
             }
             setCurrentPosition(currentPosition);
-            getFoursquarePlaces(currentPosition, restaurantList, setRestaurantList)
+
+            // call HTTP pour récupérer les restos
+            const foursquareRestaurants = await getFoursquarePlaces(currentPosition)
+
+            const restos = Array.from(restaurantList)
+
+            foursquareRestaurants.forEach(resto => {
+                  restos.push(resto)
+            })
+
+            setRestaurantList(restos)
       }
 
       const onLoad = useCallback(map => {
@@ -54,8 +64,8 @@ const GoogleMapContainer = () => {
             if (map && map.getBounds()) { 
                   //console.log(map.getBounds()) 
                   setMapBoundsValue({ 
-                         n: map.getBounds().Ra.i, 
-                         s: map.getBounds().Ra.g, 
+                         n: map.getBounds().Ta.i, 
+                         s: map.getBounds().Ta.g, 
                          e: map.getBounds().La.i, 
                          o: map.getBounds().La.g 
                   });
