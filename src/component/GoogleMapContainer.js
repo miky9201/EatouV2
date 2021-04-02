@@ -36,29 +36,27 @@ const GoogleMapContainer = () => {
             setSelected(item);
       } 
 
-      const success = async position => {
-            const currentPosition = {
-                  lat: position.coords.latitude,
-                  lng: position.coords.longitude
-            }
-            setCurrentPosition(currentPosition);
-
-            // call HTTP pour récupérer les restos
-            const foursquareRestaurants = await getFoursquarePlaces(currentPosition)
-
-            const restos = Array.from(restaurantList)
-
-            foursquareRestaurants.forEach(resto => {
-                  restos.push(resto)
-            })
-
-            setRestaurantList(restos)
-      }
-
+      
       const onLoad = useCallback(map => {
+            const success = async position => {
+                  const currentPosition = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                  }
+                  setCurrentPosition(currentPosition);
+      
+                  // call HTTP pour récupérer les restos
+                  const foursquareRestaurants = await getFoursquarePlaces(currentPosition)
+                  const restos = Array.from(restaurantList)
+                  foursquareRestaurants.forEach(resto => {
+                        restos.push(resto)
+                  })
+                  setRestaurantList(restos)
+            }
+
             setMap(map);
             navigator.geolocation.getCurrentPosition(success);
-      }, []);
+      }, [restaurantList, setCurrentPosition, setRestaurantList]);
 
       const getMapBounds = () => {
             if (map && map.getBounds()) { 
@@ -79,8 +77,6 @@ const GoogleMapContainer = () => {
                   lng: e.latLng.lng()
             });
       }
-
-      //const test = () => getFoursquarePlaces(currentPosition, restaurantList, setRestaurantList)
 
       useEffect(() => {
             console.log("++++++")
