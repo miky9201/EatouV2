@@ -21,8 +21,8 @@ export const getFoursquarePlaces = async (currentPosition) => {
                               },
                               ratings : [
                                     {
-                                          stars: 0,
-                                          comment:""
+                                          stars: 2.5,
+                                          comment: ""
                                     }
                               ]
                         }
