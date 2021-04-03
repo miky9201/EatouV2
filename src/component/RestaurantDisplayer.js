@@ -20,7 +20,7 @@ const RestaurantDisplayer = () => {
                   getStreetViewImg(item);
                   getAddress(item);
             });
-      });
+      }, [restaurantList]);
 
       // Créer une fonction async similaire à addNewRestaurant() avec paramètres (currentPosition) et qui va chercher les lat, lng et name avec getFourSquarePlaces
  
