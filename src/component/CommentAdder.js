@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
-import { CommentContext } from '../CommentContext/CommentContext';
-import { StarsContext } from '../StarsContext/StarsContext';
+
+import { CommentContext } from '../context/CommentContext';
+import { StarsContext } from '../context/StarsContext';
 
 import Form from './Form/Form';
 import TextArea from './Form/TextArea';

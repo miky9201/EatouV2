@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import RestaurantCard from './RestaurantCard';
-import { isRestaurantAverageMoreThanFilterValue } from '../utils/isRestaurantAverageMoreThanFilterValue';
-import { areRestaurantsVisibleInMap } from '../utils/areRestaurantsVisibleInMap';
-import { FilterContext } from '../FilterContext/FilterContext';
-import { GoogleMapBoundsContext } from '../GoogleMapBoundsContext/GoogleMapBoundsContext';
-import { RestaurantListContext } from '../RestaurantListContext/RestaurantListContext';
+
+import { FilterContext } from '../context/FilterContext';
+import { GoogleMapBoundsContext } from '../context/GoogleMapBoundsContext';
+import { RestaurantListContext } from '../context/RestaurantListContext';
 
 import { getAddress } from '../utils/getAddress';
 import { getStreetViewImg } from '../utils/getStreetViewImg';
+import { isRestaurantAverageMoreThanFilterValue } from '../utils/isRestaurantAverageMoreThanFilterValue';
+import { areRestaurantsVisibleInMap } from '../utils/areRestaurantsVisibleInMap';
 
 const RestaurantDisplayer = () => {
       const [ filterValue ] = useContext(FilterContext);

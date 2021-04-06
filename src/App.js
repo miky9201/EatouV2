@@ -1,18 +1,19 @@
 import './App.css';
 import React from 'react';
+
+import { FilterProvider } from './context/FilterContext';
+import { GoogleMapBoundsProvider } from './context/GoogleMapBoundsContext';
+import { CommentProvider } from './context/CommentContext';
+import { StarsProvider } from './context/StarsContext';
+import { ModalProvider } from './context/ModalContext';
+import { ClickedLatLngProvider } from './context/ClickedLatLngContext';
+import { RestaurantListProvider } from './context/RestaurantListContext';
+import { CurrentPositionProvider } from './context/CurrentPositionContext';
+
 import Header from './component/Header';
 import Filter from './component/Filter';
 import RestaurantDisplayer from './component/RestaurantDisplayer';
 import GoogleMapContainer from './component/GoogleMapContainer';
-
-import { FilterProvider } from './FilterContext/FilterContext';
-import { GoogleMapBoundsProvider } from './GoogleMapBoundsContext/GoogleMapBoundsContext';
-import { CommentProvider } from './CommentContext/CommentContext';
-import { StarsProvider } from './StarsContext/StarsContext';
-import { ModalProvider } from './ModalContext/ModalContext';
-import { ClickedLatLngProvider } from './ClickedLatLngContext/ClickedLatLngContext';
-import { RestaurantListProvider } from './RestaurantListContext/RestaurantListContext';
-import { CurrentPositionProvider } from './CurrentPositionContext/CurrentPositionContext';
 
 function App() {
       return (

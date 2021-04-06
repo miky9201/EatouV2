@@ -2,17 +2,20 @@ import React, { useState, useCallback, useContext, useEffect } from 'react'
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import icon from '../image/eatou-favicon.png';
 import { GOOGLE_MAP_KEY } from '../config';
-import { isRestaurantAverageMoreThanFilterValue } from '../utils/isRestaurantAverageMoreThanFilterValue';
-import { getFoursquarePlaces } from '../utils/getFoursquarePlaces';
+
+import { FilterContext } from '../context/FilterContext';
+import { GoogleMapBoundsContext } from '../context/GoogleMapBoundsContext';
+import { ModalContext } from '../context/ModalContext';
+import { ClickedLatLngContext } from '../context/ClickedLatLngContext';
+import { RestaurantListContext } from '../context/RestaurantListContext';
+import { CurrentPositionContext } from '../context/CurrentPositionContext';
 
 import Modal from './Modal';
 
-import { FilterContext } from '../FilterContext/FilterContext';
-import { GoogleMapBoundsContext } from '../GoogleMapBoundsContext/GoogleMapBoundsContext';
-import { ModalContext } from '../ModalContext/ModalContext';
-import { ClickedLatLngContext } from '../ClickedLatLngContext/ClickedLatLngContext';
-import { RestaurantListContext } from '../RestaurantListContext/RestaurantListContext';
-import { CurrentPositionContext } from '../CurrentPositionContext/CurrentPositionContext';
+import { isRestaurantAverageMoreThanFilterValue } from '../utils/isRestaurantAverageMoreThanFilterValue';
+import { getFoursquarePlaces } from '../utils/getFoursquarePlaces';
+
+
 
 
 const GoogleMapContainer = () => {

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import '../App.css';
+
 import CommentDisplayer from './CommentDisplayer';
 import CommentAdder  from "./CommentAdder";
+
 import { restaurantStarsAverage } from '../utils/restaurantStarsAverage'
-import '../App.css';
+
 
 
 const RestaurantCard = ({restaurant}) => {

@@ -1,17 +1,18 @@
 import React, { useState, useContext } from 'react';
+
+import { StarsContext } from '../context/StarsContext'
+import { CommentContext } from '../context/CommentContext';
+import { ClickedLatLngContext } from '../context/ClickedLatLngContext';
+import { RestaurantListContext } from '../context/RestaurantListContext';
+
 import Form from './Form/Form';
 import TextArea from './Form/TextArea';
 import Select from './Form/Select';
 import Button from './Form/Button';
 import Option from './Form/Option';
 
-import { StarsContext } from '../StarsContext/StarsContext'
-import { CommentContext } from '../CommentContext/CommentContext';
-import { ClickedLatLngContext } from '../ClickedLatLngContext/ClickedLatLngContext';
-
 import { getAddress } from '../utils/getAddress';
 import { getStreetViewImg } from '../utils/getStreetViewImg';
-import { RestaurantListContext } from '../RestaurantListContext/RestaurantListContext';
 
 const FORM_OPTIONS = [
       <Option key={0} value={0} label="0 étoiles" />,

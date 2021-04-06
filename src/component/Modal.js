@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { ModalContext } from '../ModalContext/ModalContext';
+
+import { ModalContext } from '../context/ModalContext';
 
 import AddRestaurantForm from './AddRestaurantForm';
 
