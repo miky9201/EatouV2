@@ -14,6 +14,7 @@ import Modal from './Modal';
 
 import { isRestaurantAverageMoreThanFilterValue } from '../utils/isRestaurantAverageMoreThanFilterValue';
 import { getFoursquarePlaces } from '../utils/getFoursquarePlaces';
+import { getGeolocation } from '../utils/getGeolocation'; 
 
 
 
@@ -41,20 +42,20 @@ const GoogleMapContainer = () => {
 
       
       const onLoad = useCallback(map => {
+
             const success = async position => {
                   const currentPosition = {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                   }
-                  setCurrentPosition(currentPosition);
-      
-                  // call HTTP pour récupérer les restos
                   const foursquareRestaurants = await getFoursquarePlaces(currentPosition)
-                  const restos = Array.from(restaurantList)
-                  foursquareRestaurants.forEach(resto => {
-                        restos.push(resto)
+                  const restaurants = Array.from(restaurantList)
+                  
+                  setCurrentPosition(currentPosition);
+                  foursquareRestaurants.forEach(restaurant => {
+                        restaurants.push(restaurant)
                   })
-                  setRestaurantList(restos)
+                  setRestaurantList(restaurants)
             }
 
             setMap(map);
@@ -82,14 +83,8 @@ const GoogleMapContainer = () => {
       }
 
       useEffect(() => {
-            console.log("++++++")
-            console.log(restaurantList)
-            console.log("++++++")
-      }, [restaurantList])
-
-      console.log("======")
-            console.log(restaurantList)
-            console.log("======")
+            getGeolocation();
+      }, [])
 
       return (
             <LoadScript
@@ -102,7 +97,6 @@ const GoogleMapContainer = () => {
                   zoom={14}
                   onBoundsChanged={getMapBounds}
                   onClick={addRestaurant}
-                  //onRightClick={test}
                   >     
                         {     
                               restaurantList.map(item => isRestaurantAverageMoreThanFilterValue(item, filterValue) ?
