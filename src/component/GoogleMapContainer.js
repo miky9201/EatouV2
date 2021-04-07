@@ -15,8 +15,8 @@ import Modal from './Modal';
 import { isRestaurantAverageMoreThanFilterValue } from '../utils/isRestaurantAverageMoreThanFilterValue';
 import { getFoursquarePlaces } from '../utils/getFoursquarePlaces';
 
-
-
+const DEFAULT_LAT = 48.864716
+const DEFAULT_LNG = 2.349014
 
 const GoogleMapContainer = () => {
       // eslint-disable-next-line
@@ -39,12 +39,11 @@ const GoogleMapContainer = () => {
             setSelected(item);
       } 
 
-      
       const onLoad = useCallback(map => {
             const success = async position => {
                   const currentPosition = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
+                        lat: position && position.coords ? position.coords.latitude : DEFAULT_LAT,
+                        lng: position && position.coords ? position.coords.longitude : DEFAULT_LNG 
                   }
                   setCurrentPosition(currentPosition);
       
@@ -58,7 +57,7 @@ const GoogleMapContainer = () => {
             }
 
             setMap(map);
-            navigator.geolocation.getCurrentPosition(success);
+            navigator.geolocation.getCurrentPosition(success, success);
       }, [restaurantList, setCurrentPosition, setRestaurantList]);
 
       const getMapBounds = () => {

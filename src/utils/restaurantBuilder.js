@@ -1,7 +1,7 @@
 import { getAddress } from './getAddress';
 import { getStreetViewImg } from './getStreetViewImg'; 
 
-export const restaurantBuilder = async (arrOfRestaurants, id, name, lat, lng, star, comment) => {
+export const restaurantBuilder = async (id, name, lat, lng, star, comment) => {
       const restaurant = {
             id: id,
             restaurantName: name,
@@ -18,5 +18,5 @@ export const restaurantBuilder = async (arrOfRestaurants, id, name, lat, lng, st
       }
       await getAddress(restaurant);
       await getStreetViewImg(restaurant)
-      arrOfRestaurants.push(restaurant)
+      return restaurant
 }
