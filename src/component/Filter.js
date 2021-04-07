@@ -10,7 +10,7 @@ const Filter = () => {
       }
 
       return(
-            <div className="filter yellow flex-col-spacearound-center">
+            <div className="filter yellow flex-col-center-center">
                   <label htmlFor="star-select">Choisir un restaurant</label>
                   <form>
                         <select value={filterValue} onChange={handleChange}>
