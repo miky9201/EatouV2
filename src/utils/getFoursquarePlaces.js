@@ -21,7 +21,9 @@ export const getFoursquarePlaces = async (currentPosition) => {
                         const defaultComment = "";
                         const defaultStar = 2.5;
 
-                        await restaurantBuilder(restaurants, id, name, location.lat, location.lng, defaultStar, defaultComment)
+                        const restaurant = await restaurantBuilder(id, name, location.lat, location.lng, defaultStar, defaultComment)
+
+                        restaurants.push(restaurant)
                   }
             })
 

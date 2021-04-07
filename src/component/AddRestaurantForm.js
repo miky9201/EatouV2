@@ -45,7 +45,9 @@ const AddRestaurantForm =({ toggle }) => {
                         lng: clickedLatLng.lng
                   };
 
-                  await restaurantBuilder(restaurants, id, title, location.lat, location.lng, star, comment)
+                  const restaurant = await restaurantBuilder(id, title, location.lat, location.lng, star, comment)
+
+                  restaurants.push(restaurant)
 
                   setRestaurantList(restaurants)
 
