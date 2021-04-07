@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useContext, useEffect } from 'react'
+import React, { useState, useCallback, useContext } from 'react'
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import icon from '../image/eatou-favicon.png';
 import { GOOGLE_MAP_KEY } from '../config';
@@ -14,7 +14,6 @@ import Modal from './Modal';
 
 import { isRestaurantAverageMoreThanFilterValue } from '../utils/isRestaurantAverageMoreThanFilterValue';
 import { getFoursquarePlaces } from '../utils/getFoursquarePlaces';
-import { getGeolocation } from '../utils/getGeolocation'; 
 
 const DEFAULT_LAT = 48.864716
 const DEFAULT_LNG = 2.349014
@@ -80,10 +79,6 @@ const GoogleMapContainer = () => {
                   lng: e.latLng.lng()
             });
       }
-
-      useEffect(() => {
-            getGeolocation();
-      }, [])
 
       return (
             <LoadScript
