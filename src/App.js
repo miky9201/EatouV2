@@ -28,7 +28,7 @@ function App() {
                                                             <div className="app">
                                                                   <div className="flex-col-top-center">
                                                                         <Header />
-                                                                        <div className="flex-row-center-top full-container">
+                                                                        <div className="full-container">
                                                                               <div className="display-container">
                                                                                     <div className="flex-col-center-center title">
                                                                                           <h2>Restaurants à proximité</h2>

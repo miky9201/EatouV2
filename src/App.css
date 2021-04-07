@@ -19,6 +19,17 @@ body {
 .full-container {
       height: 75vh;
       width: 100vw;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+}
+
+@media (max-width: 650px) {
+      .full-container {
+            display: flex;
+            flex-direction: column-reverse;
+      }
 }
 
 
@@ -128,13 +139,17 @@ body {
 .display-comment-button{
       background-color: rgb(29, 29, 29);
       color: rgb(255, 196, 0);
-      padding: 5px;
+      padding: 10px;
+      border-radius: 3px;
+      border-style: hidden;
 }
 
 .add-comment-button{
       background-color:rgb(255, 196, 0);
       color: rgb(29, 29, 29);
-      padding: 5px;
+      padding: 10px;
+      border-radius: 3px;
+      border-style: hidden;
 }
 
 .comment-displayer {
@@ -166,7 +181,7 @@ body {
 /* MODAL */
 
 .modal {
-      background-color: #ffffffc0;
+      background-color: #ffffffe3;
       height: 100%;
       width: 100%;
       position: absolute;
