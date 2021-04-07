@@ -1,8 +1,7 @@
 import { FOURSQUARE_CLIENT_ID } from '../config';
 import { FOURSQUARE_CLIENT_SECRET } from '../config';
-import { getAddress } from './getAddress';
-import { getStreetViewImg } from './getStreetViewImg'; 
-// import { restaurantBuilder } from './restaurantBuilder';
+
+import { restaurantBuilder } from './restaurantBuilder';
 
 export const getFoursquarePlaces = async (currentPosition) => {
       const restaurants = []
@@ -22,25 +21,7 @@ export const getFoursquarePlaces = async (currentPosition) => {
                         const defaultComment = "";
                         const defaultStar = 2.5;
 
-                        // restaurantBuilder(restaurants, id, name, location.lat, location.lng, defaultComment, defaultStar)
-
-                        const restaurant = {
-                              id: id,
-                              restaurantName: name,
-                              location: {
-                                    lat: location.lat,
-                                    lng: location.lng
-                              },
-                              ratings : [
-                                    {
-                                          stars: defaultStar,
-                                          comment: defaultComment
-                                    }
-                              ]
-                        }
-                        await getAddress(restaurant);
-                        await getStreetViewImg(restaurant)
-                        restaurants.push(restaurant)
+                        await restaurantBuilder(restaurants, id, name, location.lat, location.lng, defaultStar, defaultComment)
                   }
             })
 

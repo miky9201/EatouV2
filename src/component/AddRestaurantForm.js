@@ -11,8 +11,7 @@ import Select from './Form/Select';
 import Button from './Form/Button';
 import Option from './Form/Option';
 
-import { getAddress } from '../utils/getAddress';
-import { getStreetViewImg } from '../utils/getStreetViewImg';
+import { restaurantBuilder } from '../utils/restaurantBuilder';
 
 const FORM_OPTIONS = [
       <Option key={0} value={0} label="0 étoiles" />,
@@ -39,31 +38,15 @@ const AddRestaurantForm =({ toggle }) => {
       const addNewRestaurant = async (title, comment, star) => {
 
             if (title) {
-                  const restaurants = Array.from(restaurantList)
+                  const restaurants = Array.from(restaurantList);
+                  const id = restaurants.length + 1;
+                  const location = {
+                        lat: clickedLatLng.lat,
+                        lng: clickedLatLng.lng
+                  };
 
-                  // 1. Tu crées l'objet avec les éléments que tu connais déjà 
-                  const restaurant = {
-                        id: restaurants.length + 1,
-                        restaurantName : title,
-                        location:
-                              {
-                                    lat: clickedLatLng.lat,
-                                    lng: clickedLatLng.lng
-                              }, 
-                        ratings : [
-                              {
-                                    stars : star,
-                                    comment : comment
-                              }
-                        ]
-                  }
+                  await restaurantBuilder(restaurants, id, title, location.lat, location.lng, star, comment)
 
-                  // 2. Vérifie et ajoute l'adresse (à partir de l'API Google Maps) et ajoute la à mon objet
-                  await getAddress(restaurant)
-
-                  // 3. On sait maintenant qu'on a l'adresse depuis Google Map, on peut maintenant demander l'image
-                  await getStreetViewImg(restaurant)
-                  restaurants.push(restaurant)  
                   setRestaurantList(restaurants)
 
             } else {
