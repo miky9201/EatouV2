@@ -2,7 +2,7 @@
   "name": "eatou",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://miky9201.github.io/eatou",
+  "homepage": "https://miky9201.github.io/EatouV2",
   "dependencies": {
     "@react-google-maps/api": "^1.10.1",
     "@testing-library/jest-dom": "^4.2.4",
