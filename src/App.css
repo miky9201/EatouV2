@@ -194,6 +194,15 @@ body {
       width: 30%;
 }
 
+.loading {
+      background-color: #fff;
+      height: 110vh;
+      width: 100vw;
+      position: absolute;
+      top: 0%;
+      left: 0%;
+}
+
 
 /* FEATURES */
 

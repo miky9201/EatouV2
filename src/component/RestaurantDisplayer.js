@@ -14,16 +14,13 @@ const RestaurantDisplayer = () => {
       const [ filterValue ] = useContext(FilterContext);
       const [ mapBoundsValue ] = useContext(GoogleMapBoundsContext);
       const [ restaurantList ] = useContext(RestaurantListContext);
-
-
+      
       useEffect(() => {
             restaurantList.forEach(item => {
                   getStreetViewImg(item);
                   getAddress(item);
             });
       }, [restaurantList]);
-
-      // Créer une fonction async similaire à addNewRestaurant() avec paramètres (currentPosition) et qui va chercher les lat, lng et name avec getFourSquarePlaces
  
       return (
             restaurantList.map(restaurant => isRestaurantAverageMoreThanFilterValue(restaurant, filterValue) && areRestaurantsVisibleInMap(restaurant, mapBoundsValue) ? 

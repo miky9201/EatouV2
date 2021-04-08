@@ -6,11 +6,14 @@ import { GOOGLE_MAP_KEY } from '../config';
 import { FilterContext } from '../context/FilterContext';
 import { GoogleMapBoundsContext } from '../context/GoogleMapBoundsContext';
 import { ModalContext } from '../context/ModalContext';
+import { LoadingContext } from '../context/LoadingContext';
 import { ClickedLatLngContext } from '../context/ClickedLatLngContext';
 import { RestaurantListContext } from '../context/RestaurantListContext';
 import { CurrentPositionContext } from '../context/CurrentPositionContext';
 
 import Modal from './Modal';
+import Loading from './Loading';
+
 
 import { isRestaurantAverageMoreThanFilterValue } from '../utils/isRestaurantAverageMoreThanFilterValue';
 import { getFoursquarePlaces } from '../utils/getFoursquarePlaces';
@@ -23,6 +26,7 @@ const GoogleMapContainer = () => {
       const [ mapBoundsValue, setMapBoundsValue ]  = useContext(GoogleMapBoundsContext);
       const [ filterValue ] = useContext(FilterContext);
       const [ modalStateDisplayed, changeModalStateDisplayed ] = useContext(ModalContext);
+      const [ loadingStateDisplayed, changeLoadingStateDisplayed ] = useContext(LoadingContext);
       const [clickedLatLng, setClickedLatLng] = useContext(ClickedLatLngContext);
       const [restaurantList, setRestaurantList ] = useContext(RestaurantListContext);
       const [currentPosition, setCurrentPosition] = useContext(CurrentPositionContext);
@@ -59,6 +63,7 @@ const GoogleMapContainer = () => {
             setMap(map);
             navigator.geolocation.getCurrentPosition(success, success);
       }, [restaurantList, setCurrentPosition, setRestaurantList]);
+      
 
       const getMapBounds = () => {
             if (map && map.getBounds()) { 
@@ -80,17 +85,25 @@ const GoogleMapContainer = () => {
             });
       }
 
+      // setTimeout(() => {
+      //       changeLoadingStateDisplayed(false);
+      // }, 5000);
+
+      if(currentPosition !== undefined) {
+            changeLoadingStateDisplayed(false);
+      }
+
       return (
             <LoadScript
                   googleMapsApiKey={GOOGLE_MAP_KEY}
-            >
+            >                           
                   <GoogleMap
-                  onLoad={onLoad}
-                  mapContainerStyle={containerStyle}
-                  center={currentPosition}
-                  zoom={14}
-                  onBoundsChanged={getMapBounds}
-                  onClick={addRestaurant}
+                        onLoad={onLoad}
+                        mapContainerStyle={containerStyle}
+                        center={currentPosition}
+                        zoom={14}
+                        onBoundsChanged={getMapBounds}
+                        onClick={addRestaurant}
                   >     
                         {     
                               restaurantList.map(item => isRestaurantAverageMoreThanFilterValue(item, filterValue) ?
@@ -120,8 +133,10 @@ const GoogleMapContainer = () => {
                                     <Marker position={currentPosition} icon={icon}/>
                               ) 
                         }
+                        
                   </GoogleMap>
-                  <Modal clickedLatLng={clickedLatLng} />
+                  {loadingStateDisplayed ? <Loading /> : null}   
+                  <Modal clickedLatLng={clickedLatLng} />  
             </LoadScript>
       )    
 }
