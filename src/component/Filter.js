@@ -11,10 +11,10 @@ const Filter = () => {
 
       return(
             <div className="filter yellow flex-col-center-center">
-                  <label htmlFor="star-select">Choisir un restaurant</label>
+                  <label htmlFor="star-select">Une exigence sur la qualité de la cuisine ?</label>
                   <form>
                         <select value={filterValue} onChange={handleChange}>
-                              <option value="0">Toutes les notes</option>
+                              <option value="0">Tous les restaurants</option>
                               <option value="1">1 étoile</option>
                               <option value="2">2 étoiles</option>
                               <option value="3">3 étoiles</option>

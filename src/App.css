@@ -102,9 +102,9 @@ body {
 /* FILTER */
 
 .filter {
-      width: 75%;
+      width: 50%;
       min-height: 90px;
-      padding: 10px 0;
+      padding: 10px 25px;
       color: rgb(29, 29, 29);
 }
 
@@ -194,6 +194,8 @@ body {
       width: 30%;
 }
 
+/* LOADING */
+
 .loading {
       background-color: #fff;
       height: 110vh;
@@ -201,6 +203,10 @@ body {
       position: absolute;
       top: 0%;
       left: 0%;
+}
+
+.loading h2 {
+      color: #eee;
 }
 
 

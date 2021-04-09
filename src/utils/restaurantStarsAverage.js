@@ -1,9 +1,9 @@
 export const restaurantStarsAverage = (arr) => {
-      let arrLength = arr.length, starsSum = 0, i;
+      let starsSum = 0, index;
 
-      for (i = 0; i < arrLength; i++) {
-            starsSum += parseFloat(arr[i]);
+      for (index = 0; index < arr.length; index++) {
+            starsSum += parseFloat(arr[index]);
       }
 
-      return (starsSum/arrLength).toFixed(2);
+      return (starsSum/arr.length).toFixed(2);
 };

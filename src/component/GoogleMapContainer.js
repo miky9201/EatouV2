@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useContext } from 'react'
+import React, { useState, useCallback, useContext, useEffect } from 'react'
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import icon from '../image/eatou-favicon.png';
 import { GOOGLE_MAP_KEY } from '../config';
@@ -85,18 +85,15 @@ const GoogleMapContainer = () => {
             });
       }
 
-      // setTimeout(() => {
-      //       changeLoadingStateDisplayed(false);
-      // }, 5000);
-
-      if(currentPosition !== undefined) {
-            changeLoadingStateDisplayed(false);
-      }
+      useEffect(() => {
+            if(currentPosition !== undefined) {
+                  changeLoadingStateDisplayed(false);
+            }
+      }, [currentPosition, changeLoadingStateDisplayed])
+     
 
       return (
-            <LoadScript
-                  googleMapsApiKey={GOOGLE_MAP_KEY}
-            >                           
+            <LoadScript googleMapsApiKey={GOOGLE_MAP_KEY} >              
                   <GoogleMap
                         onLoad={onLoad}
                         mapContainerStyle={containerStyle}
@@ -135,7 +132,7 @@ const GoogleMapContainer = () => {
                         }
                         
                   </GoogleMap>
-                  {loadingStateDisplayed ? <Loading /> : null}   
+                  {loadingStateDisplayed ? <Loading /> : null}    
                   <Modal clickedLatLng={clickedLatLng} />  
             </LoadScript>
       )    

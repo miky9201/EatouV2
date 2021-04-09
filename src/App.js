@@ -16,8 +16,7 @@ import Filter from './component/Filter';
 import RestaurantDisplayer from './component/RestaurantDisplayer';
 import GoogleMapContainer from './component/GoogleMapContainer';
 
-function App() {
-      return (
+const App = () => (
             <CurrentPositionProvider>
                   <RestaurantListProvider>
                         <ClickedLatLngProvider>
@@ -53,7 +52,6 @@ function App() {
                         </ClickedLatLngProvider>
                   </RestaurantListProvider>
             </CurrentPositionProvider>
-      );
-}
+      )
 
 export default App;

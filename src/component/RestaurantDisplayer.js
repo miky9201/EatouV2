@@ -16,14 +16,15 @@ const RestaurantDisplayer = () => {
       const [ restaurantList ] = useContext(RestaurantListContext);
       
       useEffect(() => {
-            restaurantList.forEach(item => {
-                  getStreetViewImg(item);
-                  getAddress(item);
+            restaurantList.forEach(restaurant => {
+                  getStreetViewImg(restaurant);
+                  getAddress(restaurant);
             });
       }, [restaurantList]);
  
       return (
-            restaurantList.map(restaurant => isRestaurantAverageMoreThanFilterValue(restaurant, filterValue) && areRestaurantsVisibleInMap(restaurant, mapBoundsValue) ? 
+            restaurantList.map(restaurant => isRestaurantAverageMoreThanFilterValue(restaurant, filterValue) 
+            && areRestaurantsVisibleInMap(restaurant, mapBoundsValue) ? 
                   <RestaurantCard key={restaurant.id} restaurant={restaurant} /> 
                   : null
             )

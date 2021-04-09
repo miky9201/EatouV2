@@ -18,7 +18,7 @@ export const getFoursquarePlaces = async (currentPosition) => {
                               lat: res[index].venue.location.lat,
                               lng: res[index].venue.location.lng
                         };
-                        const defaultComment = "";
+                        const defaultComment = null;
                         const defaultStar = 2.5;
 
                         const restaurant = await restaurantBuilder(id, name, location.lat, location.lng, defaultStar, defaultComment)
