@@ -67,10 +67,10 @@ const GoogleMapContainer = () => {
 
       const getMapBounds = () => {
             if (map && map.getBounds()) { 
-                  //console.log(map.getBounds()) 
+                  // console.log(map.getBounds()) 
                   setMapBoundsValue({ 
-                         n: map.getBounds().Ta.i, 
-                         s: map.getBounds().Ta.g, 
+                         n: map.getBounds().Ua.i, 
+                         s: map.getBounds().Ua.g, 
                          e: map.getBounds().La.i, 
                          o: map.getBounds().La.g 
                   });
