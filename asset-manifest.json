@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/EatouV2/static/css/main.4d64c15a.chunk.css",
-    "main.js": "/EatouV2/static/js/main.63894e55.chunk.js",
-    "main.js.map": "/EatouV2/static/js/main.63894e55.chunk.js.map",
+    "main.css": "/EatouV2/static/css/main.c8e14c6f.chunk.css",
+    "main.js": "/EatouV2/static/js/main.35292fed.chunk.js",
+    "main.js.map": "/EatouV2/static/js/main.35292fed.chunk.js.map",
     "runtime-main.js": "/EatouV2/static/js/runtime-main.7a369a4d.js",
     "runtime-main.js.map": "/EatouV2/static/js/runtime-main.7a369a4d.js.map",
-    "static/js/2.f95e88e8.chunk.js": "/EatouV2/static/js/2.f95e88e8.chunk.js",
-    "static/js/2.f95e88e8.chunk.js.map": "/EatouV2/static/js/2.f95e88e8.chunk.js.map",
+    "static/js/2.c0f89c50.chunk.js": "/EatouV2/static/js/2.c0f89c50.chunk.js",
+    "static/js/2.c0f89c50.chunk.js.map": "/EatouV2/static/js/2.c0f89c50.chunk.js.map",
     "index.html": "/EatouV2/index.html",
-    "static/css/main.4d64c15a.chunk.css.map": "/EatouV2/static/css/main.4d64c15a.chunk.css.map",
-    "static/js/2.f95e88e8.chunk.js.LICENSE.txt": "/EatouV2/static/js/2.f95e88e8.chunk.js.LICENSE.txt",
+    "static/css/main.c8e14c6f.chunk.css.map": "/EatouV2/static/css/main.c8e14c6f.chunk.css.map",
+    "static/js/2.c0f89c50.chunk.js.LICENSE.txt": "/EatouV2/static/js/2.c0f89c50.chunk.js.LICENSE.txt",
     "static/media/eatou-yellow.0993e86f.png": "/EatouV2/static/media/eatou-yellow.0993e86f.png"
   },
   "entrypoints": [
     "static/js/runtime-main.7a369a4d.js",
-    "static/js/2.f95e88e8.chunk.js",
-    "static/css/main.4d64c15a.chunk.css",
-    "static/js/main.63894e55.chunk.js"
+    "static/js/2.c0f89c50.chunk.js",
+    "static/css/main.c8e14c6f.chunk.css",
+    "static/js/main.35292fed.chunk.js"
   ]
 }
