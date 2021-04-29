@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import CommentDisplayer from './CommentDisplayer';
 import CommentAdder  from "./CommentAdder";
 
-import { restaurantStarsAverage } from '../utils/restaurantStarsAverage'
+import { restaurantStarsAverage } from '../utils/restaurantStarsAverage';
+import { isWrittenComment } from '../utils/isWrittenComment';
+
 
 const RestaurantCard = ({ restaurant }) => {
 
       const [ showComment, setShowComment ] = useState(false);
       const [ showCommentEditor, setShowCommentEditor ] = useState(false);
+      const [ writtenComment, setWrittenComment ] = useState();
+
+      // eslint-disable-next-line
+      useEffect(() => {
+            isWrittenComment(restaurant.ratings, setWrittenComment)
+      })
 
       return(
                   <div key={restaurant.id} className="card">
@@ -23,9 +31,12 @@ const RestaurantCard = ({ restaurant }) => {
                               )}
                         </div>
                         <div className="button-container flex-col-spacearound-center">
-                              <button className="display-comment-button mb-15" onClick={() => setShowComment(!showComment)}>
-                                    {!showComment ? 'Afficher les Commentaires' :  'Cacher les Commentaires'}
-                              </button>
+                              {writtenComment && 
+                                    <button className="display-comment-button mb-15" onClick={() => setShowComment(!showComment)}>
+                                          {!showComment ? 'Afficher les Commentaires' :  'Cacher les Commentaires'}
+                                    </button>
+                              }
+                              
                               {!showCommentEditor &&
                                     <button className="add-comment-button mb-15" onClick={() => setShowCommentEditor(!showCommentEditor)}>
                                           Ajouter un Commentaire
