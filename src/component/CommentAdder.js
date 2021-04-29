@@ -18,7 +18,7 @@ const FORM_OPTIONS = [
       <Option key={5} value={5} label="5 étoiles" />,
 ]
 
-const CommentAdder = ({restaurant, setShowCommentEditor}) => {
+const CommentAdder = ({restaurant, showCommentEditor, setShowCommentEditor}) => {
 
       const [ commentValue, setCommentValue ] = useContext(CommentContext);
       const [ starValue, setStarValue ] = useContext(StarsContext);
@@ -46,8 +46,11 @@ const CommentAdder = ({restaurant, setShowCommentEditor}) => {
             setStarValue(e.target.value);
       }
 
-      return(
+      return( 
             <Form onSubmit={handleSubmit} className="comment-adder flex-col-spacearound-center yellow">
+                  <div className="button-div">
+                        <button className="x-button" onClick={() => setShowCommentEditor(!showCommentEditor)}>x</button>
+                  </div>
                   <TextArea onChange={handleCommentChange} className="mb-5" name="comment" labelValue={"Ajouter un commentaire"} />
                   <Select value={starValue} onChange={handleStarChange} className="mb-5" name="star" options={FORM_OPTIONS}/>
                   <Button className="display-comment-button" name="submit" value="Soumettre"/>

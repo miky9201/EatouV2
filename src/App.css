@@ -25,14 +25,6 @@ body {
       align-items: flex-start;
 }
 
-@media (max-width: 650px) {
-      .full-container {
-            display: flex;
-            flex-direction: column-reverse;
-      }
-}
-
-
 /* HEADER */
 
 .header {
@@ -136,7 +128,7 @@ body {
       width: 80%;
 }
 
-.display-comment-button{
+.display-comment-button {
       background-color: rgb(29, 29, 29);
       color: rgb(255, 196, 0);
       padding: 10px;
@@ -163,7 +155,29 @@ body {
 }
 
 
-/* COMMENT ADDER */
+/* COMMENT ADDER &  COMMENT DISPLAYER */
+
+.advert {
+      color : red;
+      font-style: italic;
+      font-size: 0.9em;
+}
+
+.button-div {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: -15px;
+      margin-right: -15px;
+}
+
+.x-button {
+      color: rgb(29, 29, 29);
+      background-color: transparent;
+      border-style: hidden;
+}
 
 .comment-adder{
       border: 2px solid rgb(29, 29, 29);
@@ -256,7 +270,7 @@ body {
       flex-direction: column;
       justify-content: space-around;
       align-items: center;
-    }
+}
 
 .flex-col-top-center {
       display: flex;
@@ -291,4 +305,27 @@ body {
       flex-direction: column;
       justify-content: flex-end;
       align-items: center;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 650px) {
+      .full-container {
+            display: flex;
+            flex-direction: column-reverse;
+            height: 85vh;
+      }
+
+      .header {
+            padding: 0px;
+            max-height: 15vh;
+      }
+
+      .header h1,  .header p {
+            display: none;
+      }
+
+      .map-container {
+            max-height: 20%;
+      }
 }

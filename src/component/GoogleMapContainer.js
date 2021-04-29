@@ -90,7 +90,6 @@ const GoogleMapContainer = () => {
                   changeLoadingStateDisplayed(false);
             }
       }, [currentPosition, changeLoadingStateDisplayed])
-     
 
       return (
             <LoadScript googleMapsApiKey={GOOGLE_MAP_KEY} >              

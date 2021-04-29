@@ -19,16 +19,18 @@ const RestaurantCard = ({ restaurant }) => {
                         </p>
                         <div className="darkgrey comment-displayer">
                               {showComment && restaurant.ratings.map((item, i) =>
-                                    <CommentDisplayer key={i} comment={item.comment} />
+                                    item.comment !== null && <CommentDisplayer key={i} comment={item.comment} />
                               )}
                         </div>
                         <div className="button-container flex-col-spacearound-center">
                               <button className="display-comment-button mb-15" onClick={() => setShowComment(!showComment)}>
                                     {!showComment ? 'Afficher les Commentaires' :  'Cacher les Commentaires'}
-                              </button> 
-                              <button className="add-comment-button mb-15" onClick={() => setShowCommentEditor(!showCommentEditor)}>
-                                    {!showCommentEditor ? 'Ajouter un Commentaire' :  'X'}
                               </button>
+                              {!showCommentEditor &&
+                                    <button className="add-comment-button mb-15" onClick={() => setShowCommentEditor(!showCommentEditor)}>
+                                          Ajouter un Commentaire
+                                    </button>
+                              }
                         </div>
                         {showCommentEditor && 
                               <CommentAdder restaurant={restaurant} showCommentEditor={showCommentEditor} setShowCommentEditor={setShowCommentEditor}/>
