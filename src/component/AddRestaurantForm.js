@@ -46,13 +46,11 @@ const AddRestaurantForm =({ toggle }) => {
                   };
 
                   const restaurant = await restaurantBuilder(id, title, location.lat, location.lng, star, comment)
-
                   restaurants.push(restaurant)
-
                   setRestaurantList(restaurants)
-
+                  
             } else {
-                  alert('Merci de donner un titre à votre restaurant !')
+                  alert('Merci de donner un titre à votre restaurant !');
             }      
       }
 
