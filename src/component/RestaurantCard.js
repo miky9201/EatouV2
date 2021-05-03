@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+
+import { CommentContext } from '../context/CommentContext'
 
 import CommentDisplayer from './CommentDisplayer';
 import CommentAdder  from "./CommentAdder";
@@ -8,12 +10,16 @@ import { restaurantStarsAverage } from '../utils/restaurantStarsAverage';
 
 const RestaurantCard = ({ restaurant }) => {
 
+      const [ commentValue ] = useContext(CommentContext)
+
       const [ showComment, setShowComment ] = useState(false);
       const [ showCommentEditor, setShowCommentEditor ] = useState(false);
 
       const hasComments = restaurant.ratings.find(
-            comment => comment.comment === null || comment.comment === undefined
+            item => item.comment === null || item.comment === undefined
       )
+
+      console.log(commentValue)
 
       return(
                   <div key={restaurant.id} className="card">
@@ -28,16 +34,14 @@ const RestaurantCard = ({ restaurant }) => {
                               )}
                         </div>
                         <div className="button-container flex-col-spacearound-center">
-                              {
-                                    hasComments ? null : (
-                                          <button 
-                                                className="display-comment-button mb-15" 
-                                                onClick={() => setShowComment(!showComment)}
-                                          >
-                                                {!showComment ? 'Afficher les Commentaires' :  'Cacher les Commentaires'}
-                                          </button>            
-                                    )
-                              }
+                              {hasComments ? null : (
+                                    <button 
+                                          className="display-comment-button mb-15" 
+                                          onClick={() => setShowComment(!showComment)}
+                                    >
+                                          {!showComment ? 'Afficher les Commentaires' :  'Cacher les Commentaires'}
+                                    </button>            
+                              )}
                               
                               
                               {!showCommentEditor &&
