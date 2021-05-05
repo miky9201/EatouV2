@@ -35,7 +35,6 @@ const CommentAdder = ({restaurant, showCommentEditor, setShowCommentEditor}) => 
             pushNewComment(restaurant.ratings, commentValue, starValue);
             setCommentValue("");
             setShowCommentEditor(false);
-
       }
 
       const handleCommentChange = (e) => {

@@ -36,16 +36,12 @@ const AddRestaurantForm =({ toggle }) => {
       const handleStarChange = (e) => setStarValue(e.target.value);
 
       const addNewRestaurant = async (title, comment, star) => {
-
             if (title) {
                   const restaurants = Array.from(restaurantList);
                   const id = restaurants.length + 1;
-                  const location = {
-                        lat: clickedLatLng.lat,
-                        lng: clickedLatLng.lng
-                  };
+                  const location = { lat: clickedLatLng.lat, lng: clickedLatLng.lng };
+                  const restaurant = await restaurantBuilder(id, title, location.lat, location.lng, star, comment);
 
-                  const restaurant = await restaurantBuilder(id, title, location.lat, location.lng, star, comment)
                   restaurants.push(restaurant)
                   setRestaurantList(restaurants)
                   

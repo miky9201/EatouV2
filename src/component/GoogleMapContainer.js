@@ -14,10 +14,10 @@ import { CurrentPositionContext } from '../context/CurrentPositionContext';
 import Modal from './Modal';
 import Loading from './Loading';
 
-
 import { isRestaurantAverageMoreThanFilterValue } from '../utils/isRestaurantAverageMoreThanFilterValue';
 import { getFoursquarePlaces } from '../utils/getFoursquarePlaces';
 
+// If geolocation does not work : Paris Center
 const DEFAULT_LAT = 48.864716
 const DEFAULT_LNG = 2.349014
 
@@ -32,7 +32,9 @@ const GoogleMapContainer = () => {
       const [currentPosition, setCurrentPosition] = useContext(CurrentPositionContext);
 
       const [ selected, setSelected ] = useState({});
-      const [map, setMap] = useState(null); // state qui contient les données de la "map"
+      const [map, setMap] = useState(null); // state containing map datas 
+
+      const GOOGLE_MAP_ZOOM =  14;
             
       const containerStyle = {
             width: '100%',
@@ -44,7 +46,6 @@ const GoogleMapContainer = () => {
       } 
 
       const onLoad = useCallback(map => {
-
             const success = async position => {
                   const currentPosition = {
                         lat: position && position.coords ? position.coords.latitude : DEFAULT_LAT,
@@ -67,6 +68,7 @@ const GoogleMapContainer = () => {
 
       const getMapBounds = () => {
             if (map && map.getBounds()) { 
+                  // Sometimes GoogleMaps bounds keys change, i keep this console.log below to get the new ones.
                   // console.log(map.getBounds()) 
                   setMapBoundsValue({ 
                          n: map.getBounds().Ua.i, 
@@ -97,38 +99,30 @@ const GoogleMapContainer = () => {
                         onLoad={onLoad}
                         mapContainerStyle={containerStyle}
                         center={currentPosition}
-                        zoom={14}
+                        zoom={GOOGLE_MAP_ZOOM}
                         onBoundsChanged={getMapBounds}
                         onClick={addRestaurant}
                   >     
-                        {     
-                              restaurantList.map(item => isRestaurantAverageMoreThanFilterValue(item, filterValue) ?
-                                    <Marker key={item.id} position={item.location} onClick={() => onSelect(item)}/> 
-                                    : null
-                              )
-                        } 
-                        {               
-                              selected.location && (
-                                    <InfoWindow 
-                                          position={selected.location} 
-                                          clickable={true} 
-                                          onCloseClick={() => setSelected({})}
-                                    >
-                                          <div>
-                                                <h2>{selected.restaurantName}</h2>
-                                                <img width="300px" src={selected.streetview} alt="restaurant"/>
-                                                <p>{selected.address}</p>
-                                                <h4>Commentaires :</h4> 
-                                                {selected.ratings.map((item, i) => <p key={i}>{item.comment}</p>)}
-                                          </div>
-                                    </InfoWindow>
-                              )
-                        }
-                        {
-                              currentPosition && ( 
-                                    <Marker position={currentPosition} icon={icon}/>
-                              ) 
-                        }
+                        {restaurantList.map(item => isRestaurantAverageMoreThanFilterValue(item, filterValue) ?
+                              <Marker key={item.id} position={item.location} onClick={() => onSelect(item)}/> 
+                              : null
+                        )} 
+
+                        {selected.location && (
+                              <InfoWindow position={selected.location} clickable={true} onCloseClick={() => setSelected({})}>
+                                    <div>
+                                          <h2>{selected.restaurantName}</h2>
+                                          <img width="300px" src={selected.streetview} alt="restaurant"/>
+                                          <p>{selected.address}</p>
+                                          <h4>Commentaires :</h4> 
+                                          {selected.ratings.map((item, i) => <p key={i}>{item.comment}</p>)}
+                                    </div>
+                              </InfoWindow>
+                        )}
+
+                        {currentPosition && ( 
+                              <Marker position={currentPosition} icon={icon}/>
+                        )}
                         
                   </GoogleMap>
                   {loadingStateDisplayed ? <Loading /> : null}    

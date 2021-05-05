@@ -24,10 +24,7 @@ const RestaurantCard = ({ restaurant }) => {
                               )}
                         </div>
                         <div className="button-container flex-col-spacearound-center">
-                              <button 
-                                    className="display-comment-button mb-15" 
-                                    onClick={() => setShowComment(!showComment)}
-                              >
+                              <button className="display-comment-button mb-15" onClick={() => setShowComment(!showComment)} >
                                     {!showComment ? 'Afficher les Commentaires' :  'Cacher les Commentaires'}
                               </button>                                          
                               {!showCommentEditor &&

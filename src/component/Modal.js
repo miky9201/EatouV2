@@ -15,13 +15,11 @@ const Modal = () => {
 
       return(
             modalStateDisplayed ? (
-                  <>
-                        <div className="modal flex-col-center-center">
-                                    <h2>Vous souhaitez ajouter un restaurant ?</h2>
-                                    <button className="add-comment-button" onClick={toggle}>Annuler</button>
-                                    <AddRestaurantForm toggle={toggle} />
-                        </div> 
-                  </>
+                  <div className="modal flex-col-center-center">
+                              <h2>Vous souhaitez ajouter un restaurant ?</h2>
+                              <button className="add-comment-button" onClick={toggle}>Annuler</button>
+                              <AddRestaurantForm toggle={toggle} />
+                  </div> 
             ) 
             : null
       )
