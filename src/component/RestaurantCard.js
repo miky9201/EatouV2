@@ -34,7 +34,9 @@ const RestaurantCard = ({ restaurant }) => {
                               }
                         </div>
                         {showCommentEditor && 
-                              <CommentAdder restaurant={restaurant} showCommentEditor={showCommentEditor} setShowCommentEditor={setShowCommentEditor}/>
+                              <CommentAdder restaurant={restaurant} 
+                              showCommentEditor={showCommentEditor} 
+                              setShowCommentEditor={setShowCommentEditor}/>
                         }    
                   </div>
       )

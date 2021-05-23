@@ -20,6 +20,7 @@ import { getFoursquarePlaces } from '../utils/getFoursquarePlaces';
 // If geolocation does not work : Paris Center
 const DEFAULT_LAT = 48.864716
 const DEFAULT_LNG = 2.349014
+const GOOGLE_MAP_ZOOM =  14;
 
 const GoogleMapContainer = () => {
       // eslint-disable-next-line
@@ -33,8 +34,6 @@ const GoogleMapContainer = () => {
 
       const [ selected, setSelected ] = useState({});
       const [map, setMap] = useState(null); // state containing map datas 
-
-      const GOOGLE_MAP_ZOOM =  14;
             
       const containerStyle = {
             width: '100%',
@@ -46,23 +45,24 @@ const GoogleMapContainer = () => {
       } 
 
       const onLoad = useCallback(map => {
-            const success = async position => {
+            const mapInit = async position => {
                   const currentPosition = {
                         lat: position && position.coords ? position.coords.latitude : DEFAULT_LAT,
                         lng: position && position.coords ? position.coords.longitude : DEFAULT_LNG 
                   }
+                  setCurrentPosition(currentPosition);
+
                   const foursquareRestaurants = await getFoursquarePlaces(currentPosition)
                   const restaurants = Array.from(restaurantList)
-                  
-                  setCurrentPosition(currentPosition);
                   foursquareRestaurants.forEach(restaurant => {
                         restaurants.push(restaurant)
                   })
                   setRestaurantList(restaurants)
             }
-
+            
             setMap(map);
-            navigator.geolocation.getCurrentPosition(success, success);
+            navigator.geolocation.getCurrentPosition(mapInit, mapInit);
+
       }, [restaurantList, setCurrentPosition, setRestaurantList]);
       
 
