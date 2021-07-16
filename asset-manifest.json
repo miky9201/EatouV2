@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/EatouV2/static/css/main.79e711b2.chunk.css",
-    "main.js": "/EatouV2/static/js/main.49300567.chunk.js",
-    "main.js.map": "/EatouV2/static/js/main.49300567.chunk.js.map",
+    "main.js": "/EatouV2/static/js/main.20aa8aa9.chunk.js",
+    "main.js.map": "/EatouV2/static/js/main.20aa8aa9.chunk.js.map",
     "runtime-main.js": "/EatouV2/static/js/runtime-main.7a369a4d.js",
     "runtime-main.js.map": "/EatouV2/static/js/runtime-main.7a369a4d.js.map",
     "static/js/2.c2263550.chunk.js": "/EatouV2/static/js/2.c2263550.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.7a369a4d.js",
     "static/js/2.c2263550.chunk.js",
     "static/css/main.79e711b2.chunk.css",
-    "static/js/main.49300567.chunk.js"
+    "static/js/main.20aa8aa9.chunk.js"
   ]
 }
