@@ -69,12 +69,12 @@ const GoogleMapContainer = () => {
       const getMapBounds = () => {
             if (map && map.getBounds()) { 
                   // Sometimes GoogleMaps bounds keys change, i keep this console.log below to get the new ones.
-                  //console.log(map.getBounds()) 
+                  // console.log(map.getBounds()) 
                   setMapBoundsValue({ 
-                         n: map.getBounds().lc.i, 
-                         s: map.getBounds().lc.g, 
-                         e: map.getBounds().Eb.i, 
-                         o: map.getBounds().Eb.g 
+                         n: map.getBounds().tc.i, 
+                         s: map.getBounds().tc.g, 
+                         e: map.getBounds().Hb.i, 
+                         o: map.getBounds().Hb.g 
                   });
             }          
       }
